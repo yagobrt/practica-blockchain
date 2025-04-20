@@ -26,6 +26,7 @@ Código para la práctica de Blockchain y Tecnologías del sector financiero
 │   ├── config.js            # Opciones y configuraciones (p. ej.: rutas de bases de datos, configuración de correo, etc.)
 │   ├── app.js               # Configuración y arranque de la aplicación Express (middleware, rutas, etc.)
 │   └── server.js            # Script para iniciar el servidor (conexión a la base de datos, etc.)
+├── secrets/                 # Certificados para firmar y claves públicas y privadas
 ├── .env                     # Variables de entorno (por ejemplo, claves privadas, contraseñas, URL de la testnet Sepolia, parámetros de cifrado, etc.)
 ├── hardhat.config.js        # Configuración de Hardhat para desplegar contratos en Sepolia
 ├── package.json             # Dependencias y scripts de NPM (puede ser único o tener uno separado por cada gran módulo)
