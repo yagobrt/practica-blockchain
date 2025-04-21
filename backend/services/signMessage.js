@@ -8,8 +8,8 @@ const crypto = require('crypto');
 // Leer la ruta del .env
 const keyPath = process.env.CERT_KEY_PATH;
 if (!keyPath) {
-  console.error('ERROR: No está definido CERT_KEY_PATH en el archivo .env');
-  process.exit(1);
+	console.error('ERROR: No está definido CERT_KEY_PATH en el archivo .env');
+	process.exit(1);
 }
 
 
@@ -35,4 +35,4 @@ function signMessage(message) {
 	return signer.sign(privateKey, "hex");
 }
 
-module.exports = {signMessage}
+module.exports = { signMessage };
