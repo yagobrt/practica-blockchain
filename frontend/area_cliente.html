@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Área de Cliente - P2P BANK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto Mono', monospace;
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+    }
+
+    h1 {
+      font-family: 'Alfa Slab One', cursive;
+      text-align: center;
+      color: #9E9E9E;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .main-content {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+
+    .linea-central {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background-color: #9E9E9E;
+      transform: translateX(-50%);
+    }
+
+    .left, .right {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .left h2 {
+      color: #0BAE36;
+      font-size: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 35px 10px 10px;
+      background-color: #aaa;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .link {
+      color: #88cfff;
+      font-size: 13px;
+      margin-bottom: 10px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #ccc;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .right h3 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      background-color: #f0f0f0;
+      color: #000;
+    }
+
+    .ver-contrato {
+      color: #0BAE36;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .nuevo-prestamo-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #ccc;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>P2P BANK</h1>
+    <div class="main-content">
+      <div class="linea-central"></div>
+
+      <!-- Sección izquierda: Área de cliente -->
+      <div class="left">
+        <h2>Área de cliente</h2>
+
+        <div>
+          <label for="nickname">Nickname:</label>
+          <div class="input-group">
+            <input type="text" id="nickname" value="TuNick">
+            <img src="https://cdn-icons-png.flaticon.com/512/84/84380.png" class="icon" width="20">
+          </div>
+          <span class="link">Guardar</span>
+        </div>
+
+        <div>
+          <label for="email">Correo de validación</label>
+          <div class="input-group">
+            <input type="email" id="email" value="p2pbank@email...">
+            <img src="https://cdn-icons-png.flaticon.com/512/84/84380.png" class="icon" width="20">
+          </div>
+        </div>
+
+        <div>
+          <label for="eth">Dirección de Ethereum</label>
+          <div class="input-group">
+            <input type="text" id="eth" value="0x1234...">
+            <img src="https://cdn-icons-png.flaticon.com/128/159/159604.png" class="icon" width="20">
+          </div>
+        </div>
+
+        <div>
+          <label for="balance">Balance</label>
+          <div class="input-group">
+            <input type="text" id="balance" value="589 (ETH)">
+          </div>
+        </div>
+
+        <button>Guardar cambios</button>
+      </div>
+
+      <!-- Sección derecha: Transacciones -->
+      <div class="right">
+        <h3>Lista con préstamos</h3>
+        <table>
+          <tr>
+            <th>Siguiente pago</th>
+            <th>Transacción</th>
+            <th>Cantidad</th>
+            <th>Acceso al contrato</th>
+          </tr>
+          <tr>
+            <td>2025-11-23</td>
+            <td>(Tú) 0xf239ffe... → 0xa217fae...</td>
+            <td>1.120 ETH</td>
+            <td><span class="ver-contrato">Ver contrato</span></td>
+          </tr>
+          <tr>
+            <td>2025-10-23</td>
+            <td>(Tú) 0xf239ffe... → 0xf2390a...</td>
+            <td>2.093 ETH</td>
+            <td><span class="ver-contrato">Ver contrato</span></td>
+          </tr>
+        </table>
+
+        <h3>Lista de tus últimas transacciones</h3>
+        <table>
+          <tr>
+            <th>Fecha</th>
+            <th>Transacción</th>
+            <th>Cantidad</th>
+          </tr>
+          <tr>
+            <td>2025-08-23</td>
+            <td>(Tú) 0xf239ffe... → <span style="color:red;">0xbg1fabe...</span></td>
+            <td>0.031 ETH</td>
+          </tr>
+          <tr>
+            <td>2025-07-31</td>
+            <td>(Tú) 0xf239ffe... → <span style="color:red;">0xfcdf9fae...</span></td>
+            <td>0.074 ETH</td>
+          </tr>
+          <tr>
+            <td>2025-07-05</td>
+            <td>0xb12a181... → 0xf239ffe (Tú)</td>
+            <td>0.120 ETH</td>
+          </tr>
+          <tr>
+            <td>2025-06-16</td>
+            <td>(Tú) 0xf239ffe... → 0xa217fae...</td>
+            <td>0.120 ETH</td>
+          </tr>
+        </table>
+
+        <button class="nuevo-prestamo-btn">Nuevo préstamo ➤</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
