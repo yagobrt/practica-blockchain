@@ -7,11 +7,11 @@
  * @param {any[]} params – Parametros de la query
  * @returns {Promise<Object>}
  */
-function fetchFirst(db, sql, params) {
+function fetchFirst(db, sql, params = []) {
   return new Promise((resolve, reject) => {
     db.get(sql, params, (err, row) => {
-      if (err) reject(err);
-      resolve(row);
+      if (err) return reject(err);
+      resolve(row == undefined ? null : row);
     });
   });
 }
@@ -23,10 +23,10 @@ function fetchFirst(db, sql, params) {
  * @param {any[]} params – Parametros de la query
  * @returns {Promise<Object[]>}
  */
-function fetchAll(db, sql, params) {
+function fetchAll(db, sql, params = []) {
   return new Promise((resolve, reject) => {
     db.all(sql, params, (err, rows) => {
-      if (err) reject(err);
+      if (err) return reject(err);
       resolve(rows);
     });
   });
@@ -43,7 +43,7 @@ function fetchAll(db, sql, params) {
 function execute(db, sql, params = []) {
   return new Promise((resolve, reject) => {
     db.run(sql, params, (err) => {
-      if (err) reject(err);
+      if (err) return reject(err);
       resolve();
     });
   });
