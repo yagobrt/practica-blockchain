@@ -4,17 +4,8 @@
   <meta charset="UTF-8">
   <title>Área de Cliente - P2P BANK</title>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Roboto Mono', monospace;
-      background-color: #1e1e1e;
-      color: #f0f0f0;
-    }
 
     .container {
       width: 100vw;
@@ -24,29 +15,12 @@
       padding: 30px;
     }
 
-    h1 {
-      font-family: 'Alfa Slab One', cursive;
-      text-align: center;
-      color: #9E9E9E;
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
     .main-content {
       display: flex;
       flex: 1;
       position: relative;
     }
 
-    .linea-central {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      background-color: #9E9E9E;
-      transform: translateX(-50%);
-    }
 
     .left, .right {
       flex: 1;
@@ -60,7 +34,7 @@
     }
 
     .left h2 {
-      color: #0BAE36;
+      color: var(--green);
       font-size: 24px;
     }
 
@@ -91,7 +65,7 @@
     }
 
     .link {
-      color: #88cfff;
+      color: var(--link-color);
       font-size: 13px;
       margin-bottom: 10px;
       display: inline-block;
@@ -102,7 +76,7 @@
       margin-top: 20px;
       padding: 12px;
       font-size: 16px;
-      background-color: #ccc;
+      background-color: var(--light-gray);
       color: black;
       border: none;
       border-radius: 5px;
@@ -122,24 +96,18 @@
     }
 
     th, td {
-      border: 1px solid #ccc;
+      border: 1px solid var(--dark-gray);
       padding: 8px;
       text-align: left;
-      background-color: #f0f0f0;
+      background-color: var(--light-gray);
       color: #000;
-    }
-
-    .ver-contrato {
-      color: #0BAE36;
-      text-decoration: underline;
-      cursor: pointer;
     }
 
     .nuevo-prestamo-btn {
       width: 100%;
       padding: 12px;
       font-size: 16px;
-      background-color: #ccc;
+      background-color: var(--light-gray);
       color: black;
       border: none;
       border-radius: 5px;
@@ -225,12 +193,12 @@
           </tr>
           <tr>
             <td>2025-08-23</td>
-            <td>(Tú) 0xf239ffe... → <span style="color:red;">0xbg1fabe...</span></td>
+            <td>(Tú) 0xf239ffe... → 0xbg1fabe...</td>
             <td>0.031 ETH</td>
           </tr>
           <tr>
             <td>2025-07-31</td>
-            <td>(Tú) 0xf239ffe... → <span style="color:red;">0xfcdf9fae...</span></td>
+            <td>(Tú) 0xf239ffe... → 0xfcdf9fae...</td>
             <td>0.074 ETH</td>
           </tr>
           <tr>

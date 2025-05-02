@@ -1,32 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>P2P BANK</title>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      height: 100vh;
-      background-color: #111; /* Fondo general gris oscuro */
-      font-family: 'Roboto Mono', monospace;
-      color: white;
-    }
-
-    h1 {
-      text-align: center;
-      color: #9E9E9E;
-      font-family: 'Alfa Slab One', cursive;
-      font-size: 36px;
-      padding-top: 30px;
-      margin-bottom: 30px;
-    }
-
     .contenido {
       display: flex;
       justify-content: space-between;
@@ -42,17 +22,14 @@
       bottom: 10%;
       left: 50%;
       width: 4px;
-      background-color: #aaa;
+      background-color: var(--light-gray);
       transform: translateX(-50%);
     }
 
-    .columna {
-      width: 48%;
-    }
 
     .columna h2 {
       text-align: center;
-      color: #0BAE36;
+      color: var(--green);
       margin-bottom: 20px;
     }
 
@@ -75,7 +52,7 @@
     input[type="text"],
     input[type="password"],
     input[type="email"] {
-      background-color: #aaa;
+      background-color: var(--light-gray);
       border: none;
       padding: 10px;
       border-radius: 3px;
@@ -101,7 +78,7 @@
       left: 67%;
       top: 110%;
       transform: translateY(-50%);
-      color: #aaa;
+      color: var(--light-gray);
     }
 
     .texto-opcion {
@@ -110,13 +87,13 @@
     }
 
     .texto-opcion a {
-      color: #ccc;
+      color: var(--light-gray);
       text-decoration: underline;
       cursor: pointer;
     }
 
     .texto-opcion a:hover {
-      color: #0BAE36;
+      color: var(--green);
     }
 
     @media (max-width: 768px) {
@@ -145,6 +122,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <h1>P2P BANK</h1>
@@ -172,7 +150,7 @@
           <label for="pass1">Contraseña</label>
           <input type="password" id="pass1">
           <span class="boton-ojito" onclick="togglePassword('pass1')">👁</span>
-          <span class="etiqueta-boton">Visualizar</span>
+          <span class="etiqueta-boton">Mostrar</span>
         </div>
 
         <div class="campo">
@@ -180,9 +158,7 @@
           <input type="email" id="email">
         </div>
       </form>
-      <div class="texto-opcion">
-        <a href="#">Guardar credenciales</a>
-      </div>
+      <button class="submit-btn"> Guardar credenciales ❯</button>
     </div>
 
     <!-- Columna derecha -->
@@ -204,6 +180,8 @@
       <div class="texto-opcion">
         <a href="#">He olvidado mi contraseña</a>
       </div>
+      <button class="submit-btn">Realizar préstamo ❯</button>
+
     </div>
   </div>
 
@@ -214,10 +192,11 @@
     }
 
     function generarNick() {
-      const nick = "User" + Math.floor(Math.random() * 10000);
+      const nick = "User" + Math.floor(Math.random() * 10_000);
       document.getElementById("nick").value = nick;
     }
   </script>
 
 </body>
+
 </html>

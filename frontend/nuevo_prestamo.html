@@ -1,119 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Nuevo préstamo - P2P BANK</title>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Mono&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Roboto Mono', monospace;
-      background-color: #1e1e1e;
-      color: #ccc;
-      padding: 30px;
-    }
-
-    h1 {
-      text-align: center;
-      font-family: 'Alfa Slab One', cursive;
-      color: #c2c2c2;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      text-align: left;
-      font-size: 20px;
-      color: #0BAE36; /* verde */
-      font-weight: bold;
-      margin: 20px 0;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .form-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px 40px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .form-container label {
-      align-self: center;
-      font-size: 18px;
-    }
-
-    .form-container input {
-      width: 100%;
-      padding: 10px;
-      background-color: #b0b0b0;
-      border: none;
-      border-radius: 2px;
-      font-size: 16px;
-    }
-
-    .eth-icon, .percent-symbol {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 20px;
-      pointer-events: none;
-    }
-
-    .percent-symbol {
-      color: #1e1e1e; /* mismo color que el fondo */
-      font-weight: bold;
-    }
-
-    .input-group {
-      position: relative;
-    }
-
-    .payment-list {
-      grid-column: 1 / span 2;
-    }
-
-    .payment-dates {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      margin-top: 10px;
-    }
-
-    .payment-dates div {
-      background-color: #b0b0b0;
-      color: #000;
-      padding: 10px;
-      text-align: center;
-      font-size: 16px;
-      border: 1px solid #888;
-    }
-
-    .payment-dates .add-btn {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .submit-btn {
-      grid-column: 2;
-      justify-self: end;
-      margin-top: 20px;
-      background-color: #ccc;
-      color: #000;
-      font-size: 16px;
-      padding: 12px 20px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Roboto Mono', monospace;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <h1>P2P BANK</h1>
   <div class="subtitle">Nuevo préstamo</div>
@@ -129,7 +23,7 @@
 
     <label for="interes">Intereses</label>
     <div class="input-group">
-      <input type="number" id="interes">
+      <input type="number" id="interes" min="0" max="100">
       <span class="percent-symbol">%</span>
     </div>
 
@@ -143,7 +37,9 @@
       </div>
     </div>
 
+    <button class="cancel-btn">❮ Cancelar</button>
     <button class="submit-btn">Realizar préstamo ❯</button>
   </div>
 </body>
+
 </html>
