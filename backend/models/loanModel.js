@@ -1,7 +1,7 @@
 // Interactuar con la base de datos de prestamos
 
-const { db_loans } = require('./db');
-const { fetchAll } = require('./dbHelpers');
+const { db_loans, dbReady } = require('./db');
+const { fetchAll, execute } = require('./dbHelpers');
 
 /**
  * Obtener los préstamos de un usuario a partir de la dirección de la cartera
@@ -9,15 +9,27 @@ const { fetchAll } = require('./dbHelpers');
  * @returns {Promise<Object>}
  */
 async function getLoansByWallet(wallet) {
+  await dbReady;
   sql = `
-    SELECT id, borrower_wallet, lender_wallet, amount, status
-    FROM loans
-    WHERE borrower_wallet = ? OR lender_wallet = ?
-    ORDER BY created_at DESC
+    SELECT * FROM loans
+    WHERE borrower_address = ? OR lender_address = ?
+    ORDER BY id DESC;
 `;
-return fetchAll(db_loans, sql, [wallet, wallet])
+  return fetchAll(db_loans, sql, [wallet, wallet])
 }
 
-module.exports = { getLoansByWallet };
+/**
+ * Insertar un nuevo préstamo en la base de datos 
+ * @param {{} borrower, lender, amount, rate, datesJson }} wallet
+ * @returns {Promise<void>}
+ */
+async function createLoan({ borrower, lender, amount, rate, datesJson }) {
+  await dbReady;
+  const sql = `
+    INSERT INTO loans (borrower_address, lender_address,  amount_eth, interest_rate, payment_dates)
+    VALUES (?, ?, ?, ?, ?);
+`;
+  return execute(db_loans, sql, [borrower, lender, amount, rate, datesJson]);
+}
 
-
+module.exports = { getLoansByWallet, createLoan };

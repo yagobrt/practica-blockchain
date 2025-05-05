@@ -1,6 +1,6 @@
 // Interactuar con la base de datos de usuarios
 
-const { db_users } = require('./db');
+const { db_users, dbReady } = require('./db');
 const { fetchFirst, execute } = require('./dbHelpers');
 
 /**
@@ -9,11 +9,11 @@ const { fetchFirst, execute } = require('./dbHelpers');
  * @returns {Promise<void>}
  */
 async function createUser({ wallet, username, passwordHash, email }) {
+  await dbReady;
   const sql = `
   INSERT INTO users (wallet, username, password, email)
   VALUES (?, ?, ?, ?);
 `;
-  console.log("createUser | DB:", db_users)
   return execute(db_users, sql, [wallet, username, passwordHash, email])
 }
 
@@ -23,8 +23,8 @@ async function createUser({ wallet, username, passwordHash, email }) {
  * @returns {Promise<Object>}
  */
 async function getUserByWallet(wallet) {
+  await dbReady;
   const sql = `SELECT username, wallet, email FROM users WHERE wallet = ? LIMIT 1`;
-  console.log("getUserByWallet | DB:", db_users)
   return fetchFirst(db_users, sql, [wallet]);
 }
 
