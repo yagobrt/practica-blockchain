@@ -31,3 +31,20 @@ Código para la práctica de Blockchain y Tecnologías del sector financiero
 ├── hardhat.config.js        # Configuración de Hardhat para desplegar contratos en Sepolia  
 ├── package.json             # Dependencias y scripts de NPM (puede ser único o tener uno separado por cada gran módulo)  
 └── README.md                # Documentación del proyecto  
+
+## Para ejecutar el proyecto
+Primero instalar las dependencias:
+```shell
+npm install
+```
+
+### Ejecutar el servidor
+```shell
+node backend/server.js
+```
+Esto iniciará un servidor en http://localhost:3000 o en el puerto especificado en el archivo `.env`
+
+### Ejecutar el frontend
+```shell
+node frontend...
+```
