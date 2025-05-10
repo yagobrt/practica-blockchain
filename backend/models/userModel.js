@@ -5,16 +5,16 @@ const { fetchFirst, execute } = require('./dbHelpers');
 
 /**
  * Insertar un nuevo usuario en la base de datos 
- * @param {{ wallet: string, username: string, passwordHash: string, email: string }} userData
+ * @param {{ email: string, wallet: string, username: string, passwordHash: string, salt: string }} userData
  * @returns {Promise<void>}
  */
-async function createUser({ wallet, username, passwordHash, email }) {
+async function createUser({ email, wallet, username, passwordHash, salt }) {
   await dbReady;
   const sql = `
-  INSERT INTO users (wallet, username, password, email)
-  VALUES (?, ?, ?, ?);
+  INSERT INTO users (email, wallet, username, password, salt)
+  VALUES (?, ?, ?, ?, ?);
 `;
-  return execute(db_users, sql, [wallet, username, passwordHash, email])
+  return execute(db_users, sql, [email, wallet, username, passwordHash, salt])
 }
 
 /**
@@ -28,4 +28,27 @@ async function getUserByWallet(wallet) {
   return fetchFirst(db_users, sql, [wallet]);
 }
 
-module.exports = { getUserByWallet, createUser };
+/**
+ * Obtener la info de un usuario a partir de la dirección de correo
+ * @param {string} - correo
+ * @returns {Promise<Object>}
+ */
+async function getUserByEmail(email) {
+  await dbReady;
+  const sql = `SELECT username, wallet, email FROM users WHERE email = ? LIMIT 1`;
+  return fetchFirst(db_users, sql, [email]);
+}
+
+/**
+ * Obtener la constraseña y el salt a partir de la dirección de correo
+ * @param {string} - correo
+ * @returns {Promise<Object>}
+ */
+async function getPasswordByEmail(email) {
+  await dbReady;
+  const sql = `SELECT password, salt FROM users WHERE email = ? LIMIT 1`;
+  return fetchFirst(db_users, sql, [email]);
+}
+
+
+module.exports = { createUser, getUserByWallet, getUserByEmail, getPasswordByEmail };

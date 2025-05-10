@@ -30,10 +30,11 @@ const db_loans = new sqlite3.Database(loansPath, flags, (err) => {
 // Definir los esquemas de las bases de datos
 const usersMigrations = [
   `CREATE TABLE IF NOT EXISTS users (
-   wallet      TEXT  PRIMARY KEY,          -- dirección Ethereum (identificador)
+   email       TEXT  PRIMARY KEY,          -- email de verificación (identificador)
+   wallet      TEXT  NOT NULL UNIQUE,      -- dirección Ethereum
    username    TEXT  NOT NULL,             -- apodo del usuario (no único)
    password    TEXT  NOT NULL,             -- hash SHA3(password + salt)
-   email       TEXT  NOT NULL              -- email de verificación
+   salt        TEXT  NOT NULL              -- salt para el hash
   );`
 ];
 
@@ -45,7 +46,12 @@ const loansMigrations = [
    amount_eth       REAL    NOT NULL,                  -- cantidad en ETH
    interest_rate    REAL    NOT NULL,                  -- tasa de interés (0.05 = 5%)
    payment_dates    TEXT    NOT NULL                   -- lista de fechas en JSON
-  );`
+  );`,
+  // Crear índices para que las búsquedas sean más rápidas
+  `CREATE INDEX IF NOT EXISTS idx_loans_borrower 
+   ON loans(borrower_address);`,
+  `CREATE INDEX IF NOT EXISTS idx_loans_lender 
+   ON loans(lender_address);`
 ];
 
 
