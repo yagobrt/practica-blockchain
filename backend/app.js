@@ -4,6 +4,7 @@ const { createUser, getUserByWallet, getPasswordByEmail } = require('./models/us
 const { createLoan, getLoansByWallet } = require('./models/loanModel');
 const { hashPassword, verifyPassword, generateOTP } = require('./services/cryptoHelpers');
 const { generateSignedEmail, saveEmail } = require('./services/writeEmail');
+const { verifySignature } = require('./services/signMessage');
 const { EmailType } = require('./services/emailTypes');
 
 const app = express();
@@ -29,6 +30,22 @@ app.post('/api/register', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error al registrar usuario.' });
+  }
+});
+
+// Comprobar la firma de un mensaje
+app.post('/api/verify', async (req, res) => {
+  try {
+    const { message, signature } = req.body;
+    const isCorrect = verifySignature(message, signature);
+    console.log(isCorrect);
+    if (isCorrect) {
+      res.status(200).json({ message: 'La firma del mensaje es válida.' });
+    }
+    res.status(400).json({ message: 'La firma del mensaje no es válida.' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al verificar la firma' });
   }
 });
 
