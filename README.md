@@ -44,7 +44,5 @@ node backend/server.js
 ```
 Esto iniciará un servidor en http://localhost:3000 o en el puerto especificado en el archivo `.env`
 
-### Ejecutar el frontend
-```shell
-node frontend...
-```
+### Ejecutar el frontend / página web
+Abrir un navegador e ir a http://localhost:3000 (o el puerto en el que se haya iniciado), se abrirá la página de registro
