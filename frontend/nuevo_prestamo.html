@@ -3,43 +3,70 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Nuevo préstamo - P2P BANK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuevo Préstamo - P2P BANK</title>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/prestamo.js"></script>
 </head>
 
 <body>
-  <h1>P2P BANK</h1>
-  <div class="subtitle">Nuevo préstamo</div>
-  <div class="form-container">
-    <label for="direccion">Dirección del prestatario</label>
-    <input type="text" id="direccion" value="0xlfg7...">
+  <header class="site-header">
+    <h1>P2P BANK</h1>
+  </header>
 
-    <label for="cantidad">Cantidad total del préstamo</label>
-    <div class="input-group">
-      <input type="number" id="cantidad">
-      <img src="https://cdn-icons-png.flaticon.com/512/7016/7016523.png" class="eth-icon">
-    </div>
+  <main class="content-wrapper">
+    <section class="loan-panel">
+      <fieldset class="form-container">
+        <legend class="form-title">Nuevo préstamo</legend>
+        <!-- Direcciones de ethereum -->
+        <div class="form-group">
+          <label for="loan-recipient">Dirección del prestamista (Tú)</label>
+          <input type="text" id="loan-recipient" class="input-field input-readonly" value="0x1234…" readonly>
+        </div>
 
-    <label for="interes">Intereses</label>
-    <div class="input-group">
-      <input type="number" id="interes" min="0" max="100">
-      <span class="percent-symbol">%</span>
-    </div>
+        <div class="form-group">
+          <label for="loan-recipient">Dirección del prestatario</label>
+          <input type="text" id="loan-recipient" class="input-field">
+        </div>
 
-    <label for="fechas">Lista con fechas de los pagos</label>
-    <div class="payment-list">
-      <div class="payment-dates">
-        <div>2025-04-10</div>
-        <div>2025-05-10</div>
-        <div>2025-06-10</div>
-        <div class="add-btn">+</div>
-      </div>
-    </div>
+        <!-- Campos de dos columnas -->
+        <div class="input-grid">
+          <div class="form-group">
+            <label for="loan-amount">Cantidad total del préstamo</label>
+            <div class="input-group">
+              <input type="number" id="loan-amount" class="input-field">
+              <i class="fa-brands fa-ethereum"></i>
+            </div>
+          </div>
 
-    <button class="cancel-btn">❮ Cancelar</button>
-    <button class="submit-btn">Realizar préstamo ❯</button>
-  </div>
+          <div class="form-group">
+            <label for="loan-interest">Intereses (%)</label>
+            <div class="input-group">
+              <input type="number" id="loan-interest" class="input-field">
+            </div>
+          </div>
+
+          <!-- Lista dinámica de fechas -->
+          <div class="loan-form__dates-wrapper form-group">
+            <label>Fechas de pago</label>
+            <ul class="loan-form__dates" id="payment-dates">
+            </ul>
+            <button type="button" class="btn loan-form__btn--add" id="add-date">
+              Añadir fecha
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <button type="submit" class="btn loan-form__btn--submit">
+          Realizar préstamo ❯
+        </button>
+      </fieldset>
+    </section>
+  </main>
 </body>
 
 </html>

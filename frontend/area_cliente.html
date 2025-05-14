@@ -1,221 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Área de Cliente - P2P BANK</title>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-
-    .container {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding: 30px;
-    }
-
-    .main-content {
-      display: flex;
-      flex: 1;
-      position: relative;
-    }
-
-
-    .left, .right {
-      flex: 1;
-      padding: 40px;
-    }
-
-    .left {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .left h2 {
-      color: var(--green);
-      font-size: 24px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .input-group {
-      position: relative;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px 35px 10px 10px;
-      background-color: #aaa;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-
-    .icon {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-    }
-
-    .link {
-      color: var(--link-color);
-      font-size: 13px;
-      margin-bottom: 10px;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 12px;
-      font-size: 16px;
-      background-color: var(--light-gray);
-      color: black;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .right h3 {
-      margin-top: 0;
-      text-align: center;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-      font-size: 14px;
-    }
-
-    th, td {
-      border: 1px solid var(--dark-gray);
-      padding: 8px;
-      text-align: left;
-      background-color: var(--light-gray);
-      color: #000;
-    }
-
-    .nuevo-prestamo-btn {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      background-color: var(--light-gray);
-      color: black;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/cliente.js"></script>
 </head>
+
 <body>
-  <div class="container">
+  <header class="site-header">
     <h1>P2P BANK</h1>
-    <div class="main-content">
-      <div class="linea-central"></div>
+  </header>
 
-      <!-- Sección izquierda: Área de cliente -->
-      <div class="left">
-        <h2>Área de cliente</h2>
+  <main class="content-wrapper">
+    <section class="client-area-panel">
+      <h2>Área de cliente</h2>
 
-        <div>
-          <label for="nickname">Nickname:</label>
+      <form class="form-container">
+        <div class="form-group">
+          <label for="nickname">Nickname</label>
           <div class="input-group">
-            <input type="text" id="nickname" value="TuNick">
-            <img src="https://cdn-icons-png.flaticon.com/512/84/84380.png" class="icon" width="20">
-          </div>
-          <span class="link">Guardar</span>
-        </div>
-
-        <div>
-          <label for="email">Correo de validación</label>
-          <div class="input-group">
-            <input type="email" id="email" value="p2pbank@email...">
-            <img src="https://cdn-icons-png.flaticon.com/512/84/84380.png" class="icon" width="20">
+            <input type="text" id="nickname" class="input-field" value="TuNick">
+            <button type="button" class="icon-btn btn-save" aria-label="Guardar nickname">
+              <i class="fa-solid fa-floppy-disk"></i>
+            </button>
           </div>
         </div>
 
-        <div>
-          <label for="eth">Dirección de Ethereum</label>
+        <div class="form-group">
+          <label for="validationEmail">Correo de validación</label>
           <div class="input-group">
-            <input type="text" id="eth" value="0x1234...">
-            <img src="https://cdn-icons-png.flaticon.com/128/159/159604.png" class="icon" width="20">
+            <input type="email" id="validationEmail" class="input-field" value="alice@email.com">
+            <button type="button" class="icon-btn btn-save" aria-label="Guardar email">
+              <i class="fa-solid fa-floppy-disk"></i>
+            </button>
           </div>
         </div>
 
-        <div>
+        <div class="form-group">
+          <label for="ethAddress">Dirección Ethereum</label>
+          <div class="input-group">
+            <input type="text" id="ethAddress" class="input-field" value="0x1234…">
+            <button type="button" class="icon-btn btn-save" aria-label="Guardar dirección">
+              <i class="fa-solid fa-floppy-disk"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
           <label for="balance">Balance</label>
-          <div class="input-group">
-            <input type="text" id="balance" value="589 (ETH)">
-          </div>
+          <input type="text" id="balance" class="input-field input-readonly" value="589 ETH" readonly>
         </div>
+      </form>
+    </section>
 
-        <button>Guardar cambios</button>
-      </div>
-
-      <!-- Sección derecha: Transacciones -->
-      <div class="right">
-        <h3>Lista con préstamos</h3>
-        <table>
-          <tr>
-            <th>Siguiente pago</th>
-            <th>Transacción</th>
-            <th>Cantidad</th>
-            <th>Acceso al contrato</th>
-          </tr>
-          <tr>
-            <td>2025-11-23</td>
-            <td>(Tú) 0xf239ffe... → 0xa217fae...</td>
-            <td>1.120 ETH</td>
-            <td><span class="ver-contrato">Ver contrato</span></td>
-          </tr>
-          <tr>
-            <td>2025-10-23</td>
-            <td>(Tú) 0xf239ffe... → 0xf2390a...</td>
-            <td>2.093 ETH</td>
-            <td><span class="ver-contrato">Ver contrato</span></td>
-          </tr>
+    <section class="client-area-panel">
+      <article class="data-table">
+        <h3 class="data-table__title">Lista con préstamos</h3>
+        <table class="data-table__table">
+          <caption class="data-table__caption">Próximos pagos</caption>
+          <thead class="data-table__head">
+            <tr>
+              <th>Siguiente pago</th>
+              <th>Transacción</th>
+              <th>Cantidad</th>
+              <th>Contrato</th>
+            </tr>
+          </thead>
+          <tbody class="data-table__body">
+            <tr>
+              <td>2025-11-23</td>
+              <td>(Tú) 0xf239ffe… → 0xa217fae…</td>
+              <td>1.120 ETH</td>
+              <td><button class="link-btn">Ver contrato</button></td>
+            </tr>
+            <tr>
+              <td>2025-10-23</td>
+              <td>(Tú) 0xf239ffe… → 0xf2390a…</td>
+              <td>2.093 ETH</td>
+              <td><button class="link-btn">Ver contrato</button></td>
+            </tr>
+          </tbody>
         </table>
+      </article>
 
-        <h3>Lista de tus últimas transacciones</h3>
-        <table>
-          <tr>
-            <th>Fecha</th>
-            <th>Transacción</th>
-            <th>Cantidad</th>
-          </tr>
-          <tr>
-            <td>2025-08-23</td>
-            <td>(Tú) 0xf239ffe... → 0xbg1fabe...</td>
-            <td>0.031 ETH</td>
-          </tr>
-          <tr>
-            <td>2025-07-31</td>
-            <td>(Tú) 0xf239ffe... → 0xfcdf9fae...</td>
-            <td>0.074 ETH</td>
-          </tr>
-          <tr>
-            <td>2025-07-05</td>
-            <td>0xb12a181... → 0xf239ffe (Tú)</td>
-            <td>0.120 ETH</td>
-          </tr>
-          <tr>
-            <td>2025-06-16</td>
-            <td>(Tú) 0xf239ffe... → 0xa217fae...</td>
-            <td>0.120 ETH</td>
-          </tr>
+      <article class="data-table">
+        <h3 class="data-table__title">Últimas transacciones</h3>
+        <table class="data-table__table">
+          <caption class="data-table__caption">Historial</caption>
+          <thead class="data-table__head">
+            <tr>
+              <th>Fecha</th>
+              <th>Transacción</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody class="data-table__body">
+            <tr>
+              <td>2025-08-23</td>
+              <td>(Tú) 0xf239ffe… → <span class="highlight">0xbg1fabe…</span></td>
+              <td>0.031 ETH</td>
+            </tr>
+            <tr>
+              <td>2025-07-31</td>
+              <td>(Tú) 0xf239ffe… → <span class="highlight">0xfcdf9fae…</span></td>
+              <td>0.074 ETH</td>
+            </tr>
+          </tbody>
         </table>
-
-        <button class="nuevo-prestamo-btn">Nuevo préstamo ➤</button>
-      </div>
-    </div>
-  </div>
+        <button class="btn primary-btn">Nuevo préstamo ➤</button>
+      </article>
+    </section>
+  </main>
 </body>
+
 </html>

@@ -3,200 +3,83 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>P2P BANK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P2P BANK - Registro / Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .contenido {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      height: calc(100vh - 100px);
-      padding: 20px 5%;
-      position: relative;
-    }
-
-    .linea-central {
-      position: absolute;
-      top: 10%;
-      bottom: 10%;
-      left: 50%;
-      width: 4px;
-      background-color: var(--light-gray);
-      transform: translateX(-50%);
-    }
-
-
-    .columna h2 {
-      text-align: center;
-      color: var(--green);
-      margin-bottom: 20px;
-    }
-
-    .formulario {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .campo {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    label {
-      margin-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    input[type="email"] {
-      background-color: var(--light-gray);
-      border: none;
-      padding: 10px;
-      border-radius: 3px;
-      font-size: 1px;
-      width: 60%;
-    }
-
-    .boton-dado,
-    .boton-ojito {
-      position: absolute;
-      right: -45px;
-      left: 70%;
-      top: 45%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 40px;
-    }
-
-    .etiqueta-boton {
-      font-size: 12px;
-      position: absolute;
-      right: -45px;
-      left: 67%;
-      top: 110%;
-      transform: translateY(-50%);
-      color: var(--light-gray);
-    }
-
-    .texto-opcion {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .texto-opcion a {
-      color: var(--light-gray);
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    .texto-opcion a:hover {
-      color: var(--green);
-    }
-
-    @media (max-width: 768px) {
-      .contenido {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .columna {
-        width: 90%;
-        margin-bottom: 40px;
-      }
-
-      .linea-central {
-        display: none;
-      }
-
-      .boton-dado,
-      .boton-ojito,
-      .etiqueta-boton {
-        position: static;
-        transform: none;
-        margin-top: 5px;
-        display: inline-block;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/auth.js"></script>
 </head>
 
 <body>
+  <header class="site-header">
+    <h1>P2P BANK</h1>
+  </header>
 
-  <h1>P2P BANK</h1>
+  <main class="content-wrapper">
+    <section class="auth-panel">
+      <!-- Registro -->
+      <fieldset class="form-container">
+        <legend class="form-title">Registro</legend>
 
-  <div class="contenido">
-    <div class="linea-central"></div>
-
-    <!-- Columna izquierda -->
-    <div class="columna">
-      <h2>Registro</h2>
-      <form class="formulario">
-        <div class="campo">
-          <label for="eth1">Dirección de Ethereum</label>
-          <input type="text" id="eth1">
+        <div class="form-group">
+          <label for="ethReg">Dirección Ethereum</label>
+          <input type="text" id="ethReg" class="input-field">
         </div>
 
-        <div class="campo">
+        <div class="form-group">
           <label for="nick">Nickname</label>
-          <input type="text" id="nick">
-          <span class="boton-dado" onclick="generarNick()">🎲</span>
-          <span class="etiqueta-boton">Random Nickname</span>
+          <div class="input-group">
+            <input type="text" id="nick" class="input-field">
+            <button type="button" class="icon-btn nick-btn" aria-label="Generar Nickname">
+              <i class="fa-solid fa-dice"></i>
+            </button>
+          </div>
         </div>
 
-        <div class="campo">
-          <label for="pass1">Contraseña</label>
-          <input type="password" id="pass1">
-          <span class="boton-ojito" onclick="togglePassword('pass1')">👁</span>
-          <span class="etiqueta-boton">Mostrar</span>
+        <div class="form-group">
+          <label for="passReg">Contraseña</label>
+          <div class="input-group">
+            <input type="password" id="passReg" class="input-field">
+            <button type="button" class="icon-btn eye-btn" data-target="passReg" aria-label="Mostrar contraseña">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
         </div>
 
-        <div class="campo">
-          <label for="email">Email para Validación</label>
-          <input type="email" id="email">
-        </div>
-      </form>
-      <button class="submit-btn"> Guardar credenciales ❯</button>
-    </div>
-
-    <!-- Columna derecha -->
-    <div class="columna">
-      <h2>Inicio de sesión</h2>
-      <form class="formulario">
-        <div class="campo">
-          <label for="eth2">Dirección de Ethereum</label>
-          <input type="text" id="eth2">
+        <div class="form-group">
+          <label for="email">Email para validación</label>
+          <input type="email" id="email" class="input-field">
         </div>
 
-        <div class="campo">
-          <label for="pass2">Contraseña</label>
-          <input type="password" id="pass2">
-          <span class="boton-ojito" onclick="togglePassword('pass2')">👁</span>
-          <span class="etiqueta-boton">Visualizar</span>
+        <button type="button" class="btn primary-btn">Registrarse</button>
+      </fieldset>
+
+      <!-- Login -->
+      <fieldset class="form-container">
+        <legend class="form-title">Inicio de sesión</legend>
+
+        <div class="form-group">
+          <label for="ethLogin">Dirección Ethereum</label>
+          <input type="text" id="ethLogin" class="input-field">
         </div>
-      </form>
-      <div class="texto-opcion">
-        <a href="#">He olvidado mi contraseña</a>
-      </div>
-      <button class="submit-btn">Realizar préstamo ❯</button>
 
-    </div>
-  </div>
+        <div class="form-group">
+          <label for="passLogin">Contraseña</label>
+          <div class="input-group">
+            <input type="password" id="passLogin" class="input-field">
+            <button type="button" class="icon-btn eye-btn" data-target="passLogin" aria-label="Mostrar contraseña">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
 
-  <script>
-    function togglePassword(id) {
-      const campo = document.getElementById(id);
-      campo.type = campo.type === "password" ? "text" : "password";
-    }
-
-    function generarNick() {
-      const nick = "User" + Math.floor(Math.random() * 10_000);
-      document.getElementById("nick").value = nick;
-    }
-  </script>
-
+        <button type="button" class="btn primary-btn">Iniciar sesión</button>
+        <a href="#" class="link-btn">¿Olvidaste tu contraseña?</a>
+      </fieldset>
+    </section>
+  </main>
 </body>
 
 </html>
