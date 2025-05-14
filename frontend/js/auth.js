@@ -16,7 +16,7 @@ document.querySelectorAll('.nick-btn').forEach(btn => {
 });
 
 // Register new user
-document.getElementById('register-form').addEventListener('submit', async (e) => {
+document.getElementById('register-form').addEventListener('submit', async () => {
   const wallet = document.getElementById('ethReg').value.trim();
   const username = document.getElementById('nameReg').value.trim();
   const password = document.getElementById('passReg').value;
@@ -32,8 +32,11 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
     });
 
     const data = await res.json();
+    console.log(res.json());
 
     if (res.status == 201) {
+      // Guardar la dirección para que permanezca iniciada la sesión
+      localStorage.setItem("userEmail", email);
       alert('Registro exitoso. Redirigiendo...');
       // Wait so user reads the message
       setTimeout(() => {

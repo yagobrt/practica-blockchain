@@ -111,6 +111,7 @@ body {
   background: var(--color-border);
   color: var(--color-text-dark);
   font-size: 1rem;
+  min-width: 50%;
 }
 
 .input-readonly {

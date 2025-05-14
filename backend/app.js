@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { createUser, getUserByWallet, getPasswordByEmail } = require('./models/userModel');
+const { createUser, getUserByEmail, getPasswordByEmail } = require('./models/userModel');
 const { createLoan, getLoansByWallet } = require('./models/loanModel');
 const { hashPassword, verifyPassword, generateOTP } = require('./services/cryptoHelpers');
 const { generateSignedEmail, saveEmail } = require('./services/writeEmail');

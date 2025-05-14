@@ -19,12 +19,12 @@
 
   <main class="content-wrapper">
     <section class="loan-panel">
-      <fieldset class="form-container">
+      <form class="form-container">
         <legend class="form-title">Nuevo préstamo</legend>
         <!-- Direcciones de ethereum -->
         <div class="form-group">
-          <label for="loan-recipient">Dirección del prestamista (Tú)</label>
-          <input type="text" id="loan-recipient" class="input-field input-readonly" value="0x1234…" readonly>
+          <label for="loan-giver">Dirección del prestamista (Tú)</label>
+          <input type="text" id="loan-giver" class="input-field input-readonly" value="0x1234…" readonly>
         </div>
 
         <div class="form-group">
@@ -64,7 +64,7 @@
         <button type="submit" class="btn loan-form__btn--submit">
           Realizar préstamo ❯
         </button>
-      </fieldset>
+      </form>
     </section>
   </main>
 </body>
