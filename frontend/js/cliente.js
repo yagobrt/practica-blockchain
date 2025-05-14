@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   } catch (err) {
     console.error(err);
-    alert('No se pudo cargar la información del usuario.');
+    alert(`No se pudo cargar la información del usuario.\n${err}`);
   }
 });
 
@@ -47,7 +47,7 @@ document.querySelectorAll('.view-contract').forEach(btn => {
 });
 
 // New loan navigation
-document.querySelector('.new-loan-btn').addEventListener('click', () => {
+document.getElementById('new-loan').addEventListener('click', () => {
   window.location.href = 'nuevo_prestamo.html';
 });
 

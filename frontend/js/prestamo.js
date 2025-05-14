@@ -42,3 +42,11 @@ document.getElementById('payment-dates').addEventListener('click', (e) => {
   }
 });
 
+// Volver atrás
+document.querySelectorAll('.loan-form__btn--cancel').forEach(btn => {
+  btn.addEventListener('click', () => {
+    alert("Volviendo al area de cliente...");
+    window.location.href = 'area_cliente.html';
+    return;
+  })
+});

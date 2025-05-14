@@ -217,6 +217,13 @@ body {
   float: right;
 }
 
+.loan-form__btn--cancel {
+  background: var(--color-muted);
+  color: var(--color-text-light);
+  margin-top: 1.5rem;
+  float: left;
+}
+
 .primary-btn {
   background: var(--color-primary);
   color: var(--color-text-light);
