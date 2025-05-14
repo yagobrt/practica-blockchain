@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+const path = require('path');
 const { createUser, getUserByWallet, getPasswordByEmail } = require('./models/userModel');
 const { createLoan, getLoansByWallet } = require('./models/loanModel');
 const { hashPassword, verifyPassword, generateOTP } = require('./services/cryptoHelpers');
@@ -8,10 +10,12 @@ const { verifySignature } = require('./services/signMessage');
 const { EmailType } = require('./services/emailTypes');
 
 const app = express();
+app.use(cors());
+app.use(express.static(path.join(__dirname, '../frontend/')));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.status(201).json({ message: 'Bienvenido a P2P bank' });
+  res.redirect("/registro.html")
 });
 
 // Registro de usuario
@@ -24,7 +28,6 @@ app.post('/api/register', async (req, res) => {
     const { message, signature } = generateSignedEmail(EmailType.OTP_CONFIRM, {
       username, action: 'Registro de nuevo usuario', otp
     });
-    // NOTE: Tal vez habría que extraer formatear los emails a una función
     saveEmail(username, email, "Código de verificación - Registro de nuevo usuario", message, signature);
     res.status(201).json({ message: 'Usuario registrado, OTP enviado.' });
   } catch (err) {

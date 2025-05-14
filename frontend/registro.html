@@ -20,19 +20,19 @@
   <main class="content-wrapper">
     <section class="auth-panel">
       <!-- Registro -->
-      <fieldset class="form-container">
+      <form class="form-container" id="register-form">
         <legend class="form-title">Registro</legend>
 
         <div class="form-group">
           <label for="ethReg">Dirección Ethereum</label>
-          <input type="text" id="ethReg" class="input-field">
+          <input type="text" id="ethReg" class="input-field" required pattern="^0x[a-fA-F0-9]{40}">
         </div>
 
         <div class="form-group">
-          <label for="nick">Nickname</label>
+          <label for="nameReg">Username</label>
           <div class="input-group">
-            <input type="text" id="nick" class="input-field">
-            <button type="button" class="icon-btn nick-btn" aria-label="Generar Nickname">
+            <input type="text" id="nameReg" class="input-field" required>
+            <button type="button" class="icon-btn nick-btn" aria-label="Generar Username">
               <i class="fa-solid fa-dice"></i>
             </button>
           </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
           <label for="passReg">Contraseña</label>
           <div class="input-group">
-            <input type="password" id="passReg" class="input-field">
+            <input type="password" id="passReg" class="input-field" required minlength="10"> <!-- TODO: añadir más validación-->
             <button type="button" class="icon-btn eye-btn" data-target="passReg" aria-label="Mostrar contraseña">
               <i class="fa-solid fa-eye"></i>
             </button>
@@ -49,35 +49,36 @@
         </div>
 
         <div class="form-group">
-          <label for="email">Email para validación</label>
-          <input type="email" id="email" class="input-field">
+          <label for="emailReg">Email para validación</label>
+          <input type="email" id="emailReg" class="input-field" required>
         </div>
 
-        <button type="button" class="btn primary-btn">Registrarse</button>
-      </fieldset>
+        <button type="submit" class="btn primary-btn" id="register-btn">Registrarse</button>
+      </form>
 
       <!-- Login -->
-      <fieldset class="form-container">
+      <form class="form-container">
         <legend class="form-title">Inicio de sesión</legend>
 
+
         <div class="form-group">
-          <label for="ethLogin">Dirección Ethereum</label>
-          <input type="text" id="ethLogin" class="input-field">
+          <label for="emailLogin">Dirección email</label>
+          <input type="email" id="emailLogin" class="input-field" required>
         </div>
 
         <div class="form-group">
           <label for="passLogin">Contraseña</label>
           <div class="input-group">
-            <input type="password" id="passLogin" class="input-field">
+            <input type="password" id="passLogin" class="input-field" required>
             <button type="button" class="icon-btn eye-btn" data-target="passLogin" aria-label="Mostrar contraseña">
               <i class="fa-solid fa-eye"></i>
             </button>
           </div>
         </div>
 
-        <button type="button" class="btn primary-btn">Iniciar sesión</button>
+        <button type="submit" class="btn primary-btn" id="login-btn">Iniciar sesión</button>
         <a href="#" class="link-btn">¿Olvidaste tu contraseña?</a>
-      </fieldset>
+      </form>
     </section>
   </main>
 </body>
