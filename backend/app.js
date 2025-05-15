@@ -36,6 +36,32 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
+// Inicio de sesión
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const { password: storedHash, salt } = await getPasswordByEmail(email);
+    console.log(password, salt, storedHash);
+    const pswdIsValid = verifyPassword(password, salt, storedHash);
+    console.log(pswdIsValid);
+    if (pswdIsValid) {
+      const user = await getUserByEmail(email);
+      const username = user.username;
+      const otp = generateOTP();
+      const { message, signature } = generateSignedEmail(EmailType.OTP_CONFIRM, {
+        username, action: 'Inicio de sesión', otp
+      });
+      saveEmail(username, email, "Código de verificación - Inicio de sesión", message, signature);
+      res.status(201).json({ message: 'Sesión iniciada, OTP enviado.' });
+    } else {
+      res.status(401).json({error: 'El email o la contraseña no son válidos'})
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al iniciar sesión.' });
+  }
+});
+
 // Comprobar la firma de un mensaje
 app.post('/api/verify', async (req, res) => {
   try {
@@ -53,11 +79,18 @@ app.post('/api/verify', async (req, res) => {
 });
 
 // Consulta de usuario
-app.get('/api/user/:wallet', async (req, res) => {
+app.get('/api/user/:email', async (req, res) => {
   try {
-    const user = await getUserByWallet(req.params.wallet);
+    const user = await getUserByEmail(req.params.email);
     if (!user) return res.status(404).json({ error: 'Usuario no encontrado.' });
-    res.json(user);
+    // TODO: obtener el balance de la blockchain
+    const balance = 0.0;
+    res.json({
+      username: user.username,
+      wallet: user.wallet,
+      email: user.email,
+      balance: balance || 0
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error al obtener usuario.' });
