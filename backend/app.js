@@ -7,6 +7,7 @@ const { createLoan, getLoansByWallet } = require('./models/loanModel');
 const { hashPassword, verifyPassword, generateOTP } = require('./services/cryptoHelpers');
 const { generateSignedEmail, saveEmail } = require('./services/writeEmail');
 const { verifySignature } = require('./services/signMessage');
+const { getWalletBalance } = require('./services/eth');
 const { EmailType } = require('./services/emailTypes');
 
 const app = express();
@@ -54,7 +55,7 @@ app.post('/api/login', async (req, res) => {
       saveEmail(username, email, "Código de verificación - Inicio de sesión", message, signature);
       res.status(201).json({ message: 'Sesión iniciada, OTP enviado.' });
     } else {
-      res.status(401).json({error: 'El email o la contraseña no son válidos'})
+      res.status(401).json({ error: 'El email o la contraseña no son válidos' })
     }
   } catch (err) {
     console.error(err);
@@ -83,8 +84,7 @@ app.get('/api/user/:email', async (req, res) => {
   try {
     const user = await getUserByEmail(req.params.email);
     if (!user) return res.status(404).json({ error: 'Usuario no encontrado.' });
-    // TODO: obtener el balance de la blockchain
-    const balance = 0.0;
+    const balance = await getWalletBalance(user.wallet);
     res.json({
       username: user.username,
       wallet: user.wallet,
@@ -93,7 +93,7 @@ app.get('/api/user/:email', async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Error al obtener usuario.' });
+    res.status(500).json({ error: 'Error al obtener la información del usuario.' });
   }
 });
 
