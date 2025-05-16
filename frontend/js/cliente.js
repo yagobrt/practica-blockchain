@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const row = loansTbody.insertRow();
 
         const nextPayCell = row.insertCell();
-        nextPayCell.textContent = loan.payment_dates;
+        nextPayCell.textContent = new Date(loan.next_payment).toLocaleString();
 
         const txCell = row.insertCell();
         if (loan.lender_address === user.wallet) {
@@ -89,7 +89,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const row = txsTbody.insertRow();
 
         const dateCell = row.insertCell();
-        const date = new Date(tx.timeStamp * 1000).toLocaleDateString();
+        const date = new Date(tx.timeStamp * 1000).toLocaleString();
         dateCell.textContent = date;
 
         const txCell = row.insertCell();

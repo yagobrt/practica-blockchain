@@ -66,7 +66,6 @@ app.post('/api/verify', async (req, res) => {
   try {
     const { message, signature } = req.body;
     const isCorrect = verifySignature(message, signature);
-    console.log(isCorrect);
     if (isCorrect) {
       res.status(200).json({ message: 'La firma del mensaje es válida.' });
     }
@@ -126,7 +125,22 @@ app.post('/api/loan', async (req, res) => {
 // Consultar préstamos
 app.get('/api/loans/:wallet', async (req, res) => {
   try {
-    const loans = await getLoansByWallet(req.params.wallet);
+    const rawLoans = await getLoansByWallet(req.params.wallet);
+    const loans = rawLoans.map(loan => {
+      const dates = JSON.parse(loan.payment_dates);
+      const now = Date.now();
+      const futureDates = dates
+        .map(d => new Date(d))
+        .filter(d => d.getTime() >= now)
+        .sort((a, b) => a - b);
+      const next_payment = (futureDates.length > 0)
+        ? futureDates[0].toISOString()
+        : null;
+      return next_payment
+        ? { ...loan, next_payment }
+        : null;
+    }).filter(Boolean);
+
     res.json(loans);
   } catch (err) {
     console.error(err);
@@ -141,7 +155,7 @@ app.get('/api/txs/:wallet', async (req, res) => {
     res.json(txs);
   } catch (err) {
     console.error(err);
-    res.status(500).json({error: `Error al obtener las últimas transacciones\n${err}`})
+    res.status(500).json({ error: `Error al obtener las últimas transacciones\n${err}` })
   }
 })
 
