@@ -43,7 +43,6 @@ async function getLastTransactions(address, limit = 10) {
 
   const res = await fetch(url);
   const json = await res.json();
-  console.log(json);
 
   return json.result;
 }

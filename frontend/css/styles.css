@@ -212,12 +212,6 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.loan-form__date-item button {
-  background: none;
-  border: none;
-  color: var(--color-primary);
-  cursor: pointer;
-}
 
 /* Buttons & links */
 .btn {
@@ -225,6 +219,12 @@ body {
   border: none;
   border-radius: 4px;
   font-size: 1rem;
+  cursor: pointer;
+}
+.remove-date-btn {
+  background: none;
+  border: none;
+  color: var(--color-highlight);
   cursor: pointer;
 }
 
