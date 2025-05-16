@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { createUser, getUserByEmail, getPasswordByEmail } = require('./models/userModel');
+const { createUser, getUserByWallet, getUserByEmail, getPasswordByEmail } = require('./models/userModel');
 const { createLoan, getLoansByWallet } = require('./models/loanModel');
 const { hashPassword, verifyPassword, generateOTP } = require('./services/cryptoHelpers');
 const { generateSignedEmail, saveEmail } = require('./services/writeEmail');
@@ -42,9 +42,7 @@ app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const { password: storedHash, salt } = await getPasswordByEmail(email);
-    console.log(password, salt, storedHash);
     const pswdIsValid = verifyPassword(password, salt, storedHash);
-    console.log(pswdIsValid);
     if (pswdIsValid) {
       const user = await getUserByEmail(email);
       const username = user.username;
