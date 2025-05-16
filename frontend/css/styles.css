@@ -152,6 +152,29 @@ body {
   border-collapse: collapse;
   background-color: var(--color-text-light);
 }
+.scroll-table {
+  max-height: 250px;
+  overflow-y: scroll;
+  display: block;
+  border: 1px solid var(--color-border);
+}
+.scroll-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.scroll-table thead {
+  position: sticky;
+  background-color: var(--color-border);
+  top: 0;
+  z-index: 1;
+}
+.scroll-table th,
+.scroll-table td {
+  word-wrap: break-word;
+  padding: 0.75rem;
+  text-align: left;
+}
 .data-table__caption {
   caption-side: top;
   font-weight: bold;

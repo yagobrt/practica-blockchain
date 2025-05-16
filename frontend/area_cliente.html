@@ -61,42 +61,45 @@
 
     <section class="client-area-panel">
       <article class="data-table">
-        <h3 class="data-table__title">Lista con préstamos</h3>
-        <table class="data-table__table">
-          <caption class="data-table__caption">Próximos pagos</caption>
-          <thead class="data-table__head">
-            <tr>
-              <th>Siguiente pago</th>
-              <th>Transacción</th>
-              <th>Cantidad</th>
-              <th>Contrato</th>
-            </tr>
-          </thead>
-          <tbody class="data-table__body" id="loans-body">
-            <tr>
-              <td colspan="4" style="text-align: center;">No hay préstamos</td>
-            </tr>
-          </tbody>
-        </table>
+        <h3 class="data-table__title">Prestamos activos: Próximos pagos</h3>
+        <div class="scroll-table">
+          <table class="data-table__table">
+            <thead class="data-table__head">
+              <tr>
+                <th>Siguiente pago</th>
+                <th>Transacción</th>
+                <th>Cantidad</th>
+                <th>Contrato</th>
+              </tr>
+            </thead>
+            <tbody class="data-table__body" id="loans-body">
+              <tr>
+                <td colspan="4" style="text-align: center;">Cargando préstamos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </article>
 
       <article class="data-table">
         <h3 class="data-table__title">Últimas transacciones</h3>
-        <table class="data-table__table">
-          <caption class="data-table__caption">Historial</caption>
-          <thead class="data-table__head">
-            <tr>
-              <th>Fecha</th>
-              <th>Transacción</th>
-              <th>Cantidad</th>
-            </tr>
-          </thead>
-          <tbody class="data-table__body" id="txs-body">
-            <tr>
-              <td colspan="4" style="text-align: center;">No hay transacciones</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="scroll-table">
+          <table class="data-table__table">
+            <thead class="data-table__head">
+              <tr>
+                <th>Fecha</th>
+                <th>Transacción</th>
+                <th>Cantidad</th>
+                <th>Bloque</th>
+              </tr>
+            </thead>
+            <tbody class="data-table__body" id="txs-body">
+              <tr>
+                <td colspan="4" style="text-align: center;">Cargando transacciones...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <button class="btn primary-btn" id="new-loan">Nuevo préstamo ➤</button>
       </article>
     </section>

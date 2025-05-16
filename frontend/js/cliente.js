@@ -70,7 +70,51 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
     }
 
-    // TODO: Rellenar las tablas con las transacciones
+    // Rellenar las tablas con las transacciones
+    const resTxs = await fetch(`http://localhost:3000/api/txs/${user.wallet}`);
+    if (!resTxs.ok) throw new Error('Error al obtener las transacciones del usuario');
+    const txs = await resTxs.json();
+
+    const txsTbody = document.getElementById('txs-body');
+    txsTbody.innerHTML = '';
+
+    if (txs.length === 0) {
+      const row = txsTbody.insertRow();
+      const cell = row.insertCell();
+      cell.colSpan = 4;
+      cell.textContent = 'No hay transacciones recientes.';
+      cell.style.textAlign = 'center';
+    } else {
+      txs.forEach(tx => {
+        const row = txsTbody.insertRow();
+
+        const dateCell = row.insertCell();
+        const date = new Date(tx.timeStamp * 1000).toLocaleDateString();
+        dateCell.textContent = date;
+
+        const txCell = row.insertCell();
+        if (tx.from === user.wallet) {
+          txCell.textContent = `(Tú) ${tx.from.slice(0, 2 + 10) + "…"} → ${tx.to.slice(0, 2 + 10) + "…"}`;
+        } else {
+          txCell.textContent = `${tx.from.slice(0, 2 + 10) + "…"} → ${tx.to.slice(0, 2 + 10) + "…"} (Tú) `;
+        }
+
+        const amtCell = row.insertCell();
+        amtCell.textContent = `${tx.value/1e18} ETH`;
+      
+        const btnCell = row.insertCell();
+        const btn = document.createElement('button');
+        btn.className = 'link-btn';
+        btn.textContent = 'Ver en la blockchain';
+        const blockURL = `https://sepolia.etherscan.io/tx/${encodeURIComponent(tx.hash)}`
+        btn.addEventListener('click', () => {
+          window.open(blockURL, '_blank');
+
+        });
+        btnCell.appendChild(btn);
+      });
+    }
+
 
   } catch (err) {
     console.error(err);

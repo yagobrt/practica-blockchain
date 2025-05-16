@@ -7,7 +7,7 @@ const { createLoan, getLoansByWallet } = require('./models/loanModel');
 const { hashPassword, verifyPassword, generateOTP } = require('./services/cryptoHelpers');
 const { generateSignedEmail, saveEmail } = require('./services/writeEmail');
 const { verifySignature } = require('./services/signMessage');
-const { getWalletBalance } = require('./services/eth');
+const { getWalletBalance, getLastTransactions } = require('./services/eth');
 const { EmailType } = require('./services/emailTypes');
 
 const app = express();
@@ -133,6 +133,17 @@ app.get('/api/loans/:wallet', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener préstamos.' });
   }
 });
+
+// Consultar transacciones
+app.get('/api/txs/:wallet', async (req, res) => {
+  try {
+    const txs = await getLastTransactions(req.params.wallet);
+    res.json(txs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({error: `Error al obtener las últimas transacciones\n${err}`})
+  }
+})
 
 module.exports = app;
 
