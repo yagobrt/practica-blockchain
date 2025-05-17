@@ -2,3 +2,4 @@ node_modules/
 backend/emails/
 .env
 .deps/remix-tests/
+*.ini
