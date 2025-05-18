@@ -1,10 +1,15 @@
 const hre = require("hardhat");
 
 async function main() {
-  const HelloWorld = await hre.ethers.getContractFactory("HelloWorld");
-  const hello = await HelloWorld.deploy("Hello, Sepolia!");
-  await hello.deployed();
-  console.log(`Contract deployed to: ${hello.address}`);
+  const Loan = await hre.ethers.getContractFactory("EscrowLoan");
+
+  // 3. Desplegamos (no recibe parámetros en el constructor)
+  const loan = await Loan.deploy();
+
+  // 4. Esperamos a que se mine la transacción de despliegue
+  await loan.deployed();
+
+  console.log(`EscrowLoan deployed to: ${loan.address}`);
 }
 
 main().catch((error) => {
