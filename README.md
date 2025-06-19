@@ -1,9 +1,38 @@
 # practica-blockchain
-Código para la práctica de Blockchain y Tecnologías del sector financiero
+Código del proyecto principal para la asignatura de *BlockChain y Tecnologías de Seguridad* del
+[Máster Universitario en Tecnologías del Sector Financiero: Fintech](https://www.uc3m.es/master/fintech)
+
+## Descripción y características principales
+La aplicación permite a los usuarios automatizar la creación de transacciones
+en la testnet Ethereum Sepolia, para la creación de prestamos entre pares (P2P).
+
+- Registro y autenticación de usuario
+- Creación y aceptación de préstamos entre carteras Ethereum
+- Despliegue de contratos inteligentes en Sepolia (Ethereum testnet)
+- Firma criptográfica de mensajes
+- Bases de datos SQLite cifradas para proteger la información sensible
+- Interfaz web intuitiva y moderna
+
+## Tecnologías usadas
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Node.js, Express.js
+- **Blockchain:** Solidity, Hardhat, ethers.js
+- **Base de datos:** SQLite (cifrada)
+
+
+## Instalación
+Consulta el archivo [`INSTALL.md`](./INSTALL.md) para instruacciones detalladas
+sobre cómo instalar y ejecutar el proyecto en tu sistema local.
+
+## Licencia
+Este proyecto está liecenciado bajo los términos de la [GNU GPL v3.0](./LICENSE)
+
+---
+
+**Este es un proyecto con fines académicos pensado para ser desplegado en un entorno local y una red de prueba.**
 
 ## Estructura del proyecto
-✨ Gracias ChatGPT 🤖 ✨  
-.  
+.
 ├── contracts/               # Contratos inteligentes en Solidity (incluye pruebas si las hubiera)  
 │   ├── HelloWorld.sol         
 │   └── ...                  # Otros contratos (por ejemplo, Lending.sol o LoanContract.sol)  
@@ -32,17 +61,3 @@ Código para la práctica de Blockchain y Tecnologías del sector financiero
 ├── package.json             # Dependencias y scripts de NPM (puede ser único o tener uno separado por cada gran módulo)  
 └── README.md                # Documentación del proyecto  
 
-## Para ejecutar el proyecto
-Primero instalar las dependencias:
-```shell
-npm install
-```
-
-### Ejecutar el servidor
-```shell
-node backend/server.js
-```
-Esto iniciará un servidor en http://localhost:3000 o en el puerto especificado en el archivo `.env`
-
-### Ejecutar el frontend / página web
-Abrir un navegador e ir a http://localhost:3000 (o el puerto en el que se haya iniciado), se abrirá la página de registro
